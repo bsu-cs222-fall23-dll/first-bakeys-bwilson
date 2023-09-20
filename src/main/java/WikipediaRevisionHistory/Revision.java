@@ -9,4 +9,11 @@ public class Revision {
         this.timestamp = revision.get("timestamp");
         this.user = revision.get("user");
     }
+
+    @Override
+    public String toString() {
+        return timestamp + " " + user + "\n";
+
+
+    }
 }
