@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class RevisionParser {
+public class WikipediaParser {
 
     public List<Revision> parse(InputStream dataStream) throws IOException {
         List<Revision> list = new ArrayList<>();

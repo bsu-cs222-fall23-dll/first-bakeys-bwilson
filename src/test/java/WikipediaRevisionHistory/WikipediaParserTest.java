@@ -8,13 +8,13 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class RevisionParserTest {
+class WikipediaParserTest {
 
     @Test
     public void testParser() throws IOException {
-        RevisionParser revisionParser = new RevisionParser();
+        WikipediaParser wikipediaParser = new WikipediaParser();
         InputStream testDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("test.json");
-        List<Revision> revisions = revisionParser.parse(testDataStream);
+        List<Revision> revisions = wikipediaParser.parse(testDataStream);
         assertEquals(revisions.size(), 4);
         assertEquals(revisions.get(0).user, "Ken Gallager");
         assertEquals(revisions.get(0).timestamp, "2022-05-25T17:55:11Z");
