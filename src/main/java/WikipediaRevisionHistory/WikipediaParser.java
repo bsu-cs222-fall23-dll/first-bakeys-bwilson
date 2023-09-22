@@ -9,15 +9,23 @@ import java.util.List;
 import java.util.Map;
 
 public class WikipediaParser {
+    private final List<List<Map<String,String>>> pages;
 
-    public List<Revision> parse(InputStream dataStream) throws IOException {
+    public WikipediaParser(InputStream dataStream) {
+        try {
+            this.pages = JsonPath.read(dataStream, "$.query.pages.*.revisions");
+        } catch (IOException error) {
+            throw new RuntimeException(error.getLocalizedMessage());
+        }
+    }
+
+    public List<Revision> getRevisions() {
         List<Revision> list = new ArrayList<>();
-        List<List<Map<String,String>>> pages = JsonPath.read(dataStream, "$.query.pages.*.revisions");
-        pages.forEach(revisions -> {
-            revisions.forEach(revision -> {
-                list.add(new Revision(revision));
-            });
-        });
+        this.pages.forEach(revisions ->
+            revisions.forEach(revision ->
+                list.add(new Revision(revision))
+            )
+        );
         return list;
     }
 }
