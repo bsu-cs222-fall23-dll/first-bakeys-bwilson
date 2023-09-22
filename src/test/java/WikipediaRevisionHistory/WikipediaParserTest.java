@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class WikipediaParserTest {
     InputStream testDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("simple-test-data.json");
     InputStream edgeCaseDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("edge-case-test-data.json");
+    InputStream noPageDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("edge-case-test-data.json");
 
     @Test
     public void testInitialParse() {
@@ -53,5 +54,10 @@ class WikipediaParserTest {
             assertEquals(redirects.get(0).from, "UK");
             assertEquals(redirects.get(0).to, "United Kingdom");
         }
+    }
+
+    @Test
+    public void testNoArticleForTitle() {
+        assertThrows(NoArticleException.class, () -> new WikipediaParser(noPageDataStream));
     }
 }
