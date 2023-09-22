@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class WikipediaParserTest {
     InputStream testDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("simple-test-data.json");
+    InputStream edgeCaseDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("edge-case-test-data.json");
 
     @Test
     public void testInitialParse() {
@@ -35,6 +36,22 @@ class WikipediaParserTest {
                 assertTrue(diff >= 0, "Revisions not sorted reverse-chronological order");
                 lastTimestamp = timestamp;
             }
+        }
+    }
+
+    @Nested class getRedirects {
+        @Test
+        public void testNoRedirect() {
+            List<Redirect> redirects =  new WikipediaParser(testDataStream).getRedirects();
+            assertNull(redirects);
+        }
+
+        @Test
+        public void testParsing() {
+            List<Redirect> redirects =  new WikipediaParser(edgeCaseDataStream).getRedirects();
+            assertEquals(redirects.size(), 1);
+            assertEquals(redirects.get(0).from, "UK");
+            assertEquals(redirects.get(0).to, "United Kingdom");
         }
     }
 }

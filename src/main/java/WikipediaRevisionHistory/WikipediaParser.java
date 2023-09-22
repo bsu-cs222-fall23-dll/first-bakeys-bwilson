@@ -28,4 +28,8 @@ public class WikipediaParser {
         );
         return list;
     }
+
+    public List<Redirect> getRedirects() {
+        return null;
+    }
 }
