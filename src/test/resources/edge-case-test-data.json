@@ -1,0 +1,19 @@
+{
+  "continue": { "rvcontinue": "20230920213403|1176308070", "continue": "||" },
+  "query": {
+    "redirects": [{ "from": "UK", "to": "United Kingdom" }],
+    "pages": [
+      {
+        "pageid": 31717,
+        "ns": 0,
+        "title": "United Kingdom",
+        "revisions": [
+          { "user": "Moxy", "timestamp": "2023-09-20T22:22:45Z" },
+          { "user": "Moxy", "timestamp": "2023-09-20T22:16:30Z" },
+          { "user": "Moxy", "timestamp": "2023-09-20T22:14:52Z" },
+          { "user": "Moxy", "timestamp": "2023-09-20T21:40:00Z" }
+        ]
+      }
+    ]
+  }
+}
