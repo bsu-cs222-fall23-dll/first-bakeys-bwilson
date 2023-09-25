@@ -15,7 +15,7 @@ public class WikipediaConnector {
         this.title = title;
     }
 
-    private URLConnection connectToWikipedia() throws IOException {
+    public InputStream getData() throws IOException {
         String urlString = "https://en.wikipedia.org/w/api.php?"
                 + "action=query"
                 + "&format=json"
@@ -29,13 +29,9 @@ public class WikipediaConnector {
             URLConnection connection = url.openConnection();
             connection.setRequestProperty("User-Agent", "CS222FirstProject/0.1 (bakeys@bsu.edu)");
             connection.connect();
-            return connection;
+            return connection.getInputStream();
         } catch (MalformedURLException malformedURLException) {
             throw new RuntimeException(malformedURLException);
         }
-    }
-
-    private InputStream getDataFrom(URLConnection connection) throws IOException {
-        return connection.getInputStream();
     }
 }
