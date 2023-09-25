@@ -7,7 +7,7 @@ import java.net.SocketTimeoutException;
 public class Main {
 
     public static void main(String[] args) {
-        Controller controller = new Controller(); // TODO: Make controller static
+        Controller controller = new Controller();
         View.requestTitle();
         try {
             String title = controller.getTitle();

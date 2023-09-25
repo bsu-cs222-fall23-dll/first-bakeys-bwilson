@@ -21,7 +21,7 @@ public class WikipediaConnector {
                 + "&format=json"
                 + "&prop=revisions"
                 + "&rvprop=timestamp|user"
-                + "&rvlimit=4"
+                + "&rvlimit=13"
                 + "&redirects"
                 + "&titles=" + URLEncoder.encode(this.title, Charset.defaultCharset());
         try {
