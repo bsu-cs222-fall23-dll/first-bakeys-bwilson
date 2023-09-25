@@ -11,11 +11,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class ControllerTest {
 
     @Test
-    public void testGetArticleTitle() {
+    public void testGetArticleTitle() throws NoInputException {
         Controller controller = new Controller();
         String title = "Arkansas Highway 327";
         setInput(title);
         assertEquals(title, controller.getTitle());
+
     }
 
     @Test
