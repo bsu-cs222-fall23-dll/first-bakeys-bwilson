@@ -1,0 +1,19 @@
+{
+  "batchcomplete": true,
+  "query": {
+    "normalized": [
+      {
+        "fromencoded": false,
+        "from": "fdsjaklfnreansnd",
+        "to": "Fdsjaklfnreansnd"
+      }
+    ],
+    "pages": [
+      {
+        "ns": 0,
+        "title": "Fdsjaklfnreansnd",
+        "missing": true
+      }
+    ]
+  }
+}
