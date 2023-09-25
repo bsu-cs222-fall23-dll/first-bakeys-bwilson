@@ -1,7 +1,5 @@
 package WikipediaRevisionHistory;
 
-import WikipediaRevisionHistory.Redirect;
-
 import java.util.List;
 
 public class View {
@@ -20,5 +18,9 @@ public class View {
         revisions.forEach(revision -> {
             System.out.println(revision.toString());
         });
+    }
+
+    public static void showNoConnectionWarning() {
+        System.out.println("Oh god, why’s it so quiet! I crave connection (to the internet).");
     }
 }
