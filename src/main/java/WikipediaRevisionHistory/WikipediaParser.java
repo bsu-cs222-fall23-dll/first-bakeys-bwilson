@@ -29,6 +29,8 @@ public class WikipediaParser {
         return list;
     }
 
+    // TODO: Make method pass tests
+    // TODO: Change to getLastRedirect
     public List<Redirect> getRedirects() {
         return null;
     }
