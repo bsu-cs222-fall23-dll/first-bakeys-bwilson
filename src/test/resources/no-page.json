@@ -8,12 +8,13 @@
         "to": "Fdsjaklfnreansnd"
       }
     ],
-    "pages": [
-      {
-        "ns": 0,
-        "title": "Fdsjaklfnreansnd",
-        "missing": true
-      }
-    ]
+    "pages": {
+  "0":
+{
+  "ns": 0,
+  "title": "Fdsjaklfnreansnd",
+  "missing": true
+}
+}
   }
 }

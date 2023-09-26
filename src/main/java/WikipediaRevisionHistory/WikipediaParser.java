@@ -16,11 +16,11 @@ public class WikipediaParser {
     public WikipediaParser(InputStream dataStream) throws NoArticleException {
         try {
             Map<String, Object> query = JsonPath.read(dataStream, "$.query");
-            List<Map<String, Object>> pages = (List<Map<String, Object>>) query.get("pages");
+            Map<String, Map<String, Object>> pages = (Map<String, Map<String, Object>>) query.get("pages");
 
-            Map<String, Object> page1 = pages.get(0);
+            Map<String, Object> page1 = pages.values().iterator().next();
 
-            if (page1.containsKey("missing") && (boolean) page1.get("missing")){
+            if (page1.containsKey("missing")){
               throw new NoArticleException();
             }
 
