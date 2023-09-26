@@ -24,6 +24,8 @@ public class Main {
             View.showNoInputWarning();
         } catch (SocketTimeoutException exception) {
             View.showNoConnectionWarning();
+        } catch (NoArticleException exception) {
+            View.showNoArticleWarning();
         }
     }
 

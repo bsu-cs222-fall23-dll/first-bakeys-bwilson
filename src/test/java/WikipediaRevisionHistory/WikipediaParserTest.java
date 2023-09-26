@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class WikipediaParserTest {
     InputStream testDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("simple-test-data.json");
     InputStream edgeCaseDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("edge-case-test-data.json");
-    InputStream noPageDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("edge-case-test-data.json");
+    InputStream noPageDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("no-page.json");
 
     @Test
     public void testInitialParse() {
@@ -20,7 +20,7 @@ class WikipediaParserTest {
 
     @Nested class getRevisions {
         @Test
-        public void testParsing() {
+        public void testParsing() throws NoArticleException {
             List<Revision> revisions =  new WikipediaParser(testDataStream).getRevisions();
             assertEquals(revisions.size(), 13);
             assertEquals(revisions.get(0).user, "Ken Gallager");
@@ -28,7 +28,7 @@ class WikipediaParserTest {
         }
 
         @Test
-        public void testSorting() {
+        public void testSorting() throws NoArticleException {
             List<Revision> revisions =  new WikipediaParser(testDataStream).getRevisions();
             String lastTimestamp = revisions.get(0).timestamp;
             for (int i = 1; i < revisions.size(); i++) {
@@ -42,13 +42,13 @@ class WikipediaParserTest {
 
     @Nested class getRedirects {
         @Test
-        public void testNoRedirect() {
-            List<Redirect> redirects =  new WikipediaParser(testDataStream).getRedirects();
+        public void testNoRedirect() throws NoArticleException {
+            List<Redirect> redirects = new WikipediaParser(testDataStream).getRedirects();
             assertNull(redirects);
         }
 
         @Test
-        public void testParsing() {
+        public void testParsing() throws NoArticleException {
             List<Redirect> redirects =  new WikipediaParser(edgeCaseDataStream).getRedirects();
             assertEquals(redirects.size(), 1);
             assertEquals(redirects.get(0).from, "UK");

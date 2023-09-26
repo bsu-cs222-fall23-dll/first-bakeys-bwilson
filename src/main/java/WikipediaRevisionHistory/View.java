@@ -23,4 +23,8 @@ public class View {
     public static void showNoConnectionWarning() {
         System.out.println("Oh god, why’s it so quiet! I crave connection (to the internet).");
     }
+
+    public static void showNoArticleWarning() {
+        System.out.println("That doesn't exists... anywhere on the internet.. dummy");
+    }
 }

@@ -1,5 +1,6 @@
 package WikipediaRevisionHistory;
 
+import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 
 import java.io.IOException;
@@ -9,11 +10,24 @@ import java.util.List;
 import java.util.Map;
 
 public class WikipediaParser {
-    private final List<List<Map<String,String>>> pages;
+    private final List<Map<String,String>> revisions = new ArrayList<>();
+    private final List<Map<String, String>> redirects;
 
-    public WikipediaParser(InputStream dataStream) {
+    public WikipediaParser(InputStream dataStream) throws NoArticleException {
         try {
-            this.pages = JsonPath.read(dataStream, "$.query.pages.*.revisions");
+            Map<String, Object> query = JsonPath.read(dataStream, "$.query");
+            List<Map<String, Object>> pages = (List<Map<String, Object>>) query.get("pages");
+
+            Map<String, Object> page1 = pages.get(0);
+
+            if (page1.containsKey("missing") && (boolean) page1.get("missing")){
+              throw new NoArticleException();
+            }
+
+            this.revisions.addAll((List<Map<String, String>>) page1.get("revisions"));
+            this.redirects = (List<Map<String, String>>) query.get("redirects");
+
+
         } catch (IOException error) {
             throw new RuntimeException(error.getLocalizedMessage());
         }
@@ -21,10 +35,8 @@ public class WikipediaParser {
 
     public List<Revision> getRevisions() {
         List<Revision> list = new ArrayList<>();
-        this.pages.forEach(revisions ->
-            revisions.forEach(revision ->
-                list.add(new Revision(revision))
-            )
+        this.revisions.forEach(revision ->
+            list.add(new Revision(revision))
         );
         return list;
     }
@@ -32,6 +44,10 @@ public class WikipediaParser {
     // TODO: Make method pass tests
     // TODO: Change to getLastRedirect
     public List<Redirect> getRedirects() {
-        return null;
+        List<Redirect> list = new ArrayList<>();
+        this.redirects.forEach(redirect -> {
+            list.add(new Redirect(redirect));
+        });
+        return list;
     }
 }
