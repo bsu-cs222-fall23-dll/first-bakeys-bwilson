@@ -28,6 +28,8 @@ public class WikipediaParser {
             this.redirects = (List<Map<String, String>>) query.get("redirects");
 
 
+
+
         } catch (IOException error) {
             throw new RuntimeException(error.getLocalizedMessage());
         }
@@ -44,6 +46,10 @@ public class WikipediaParser {
     // TODO: Make method pass tests
     // TODO: Change to getLastRedirect
     public List<Redirect> getRedirects() {
+        if (this.redirects == null){
+            return null;
+        }
+
         List<Redirect> list = new ArrayList<>();
         this.redirects.forEach(redirect -> {
             list.add(new Redirect(redirect));
