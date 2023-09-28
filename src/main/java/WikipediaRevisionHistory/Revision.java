@@ -12,7 +12,7 @@ public class Revision {
 
     @Override
     public String toString() {
-        return timestamp + " " + user + "\n";
+        return timestamp + " " + user;
 
 
     }
