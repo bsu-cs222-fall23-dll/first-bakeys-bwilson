@@ -1,32 +1,24 @@
 package WikipediaRevisionHistory;
 
-import java.io.InputStream;
-import java.util.List;
-import java.net.SocketTimeoutException;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class Main {
+public class Main extends Application {
 
-    public static void main(String[] args) {
-        Controller controller = new Controller();
-        View.requestTitle();
-        try {
-            String title = controller.getTitle();
-            WikipediaConnector wikiConnector = new WikipediaConnector(title);
-            InputStream data = wikiConnector.getData();
-            WikipediaParser parser = new WikipediaParser(data);
-            List<Redirect> redirects = parser.getRedirects();
-            if (redirects != null && redirects.size() > 0) {
-                View.showRedirectMessage(redirects.get(redirects.size() - 1));
-            }
-            List<Revision> revisions = parser.getRevisions();
-            View.showRevision(revisions);
-        } catch (NoInputException exception) {
-            View.showNoInputWarning();
-        } catch (SocketTimeoutException exception) {
-            View.showNoConnectionWarning();
-        } catch (NoArticleException exception) {
-            View.showNoArticleWarning();
-        }
+    @Override
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/scene.fxml"));
+        Scene scene = new Scene(root);
+
+        stage.setTitle("JavaFX and Gradle");
+        stage.setScene(scene);
+        stage.show();
     }
 
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
