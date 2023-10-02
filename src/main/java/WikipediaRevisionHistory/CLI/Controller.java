@@ -1,4 +1,6 @@
-package WikipediaRevisionHistory;
+package WikipediaRevisionHistory.CLI;
+
+import WikipediaRevisionHistory.model.NoInputException;
 
 import java.util.Scanner;
 

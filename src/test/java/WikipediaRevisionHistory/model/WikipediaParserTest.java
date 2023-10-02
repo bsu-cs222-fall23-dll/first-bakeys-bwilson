@@ -1,4 +1,4 @@
-package WikipediaRevisionHistory;
+package WikipediaRevisionHistory.model;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

@@ -4,7 +4,7 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.1.0'
 }
 
-group 'WikipediaRevisionHistory'
+group 'edu.bsu.cs22.bakeys-bwilson'
 version '1.0-SNAPSHOT'
 
 repositories {

@@ -1,4 +1,6 @@
-package WikipediaRevisionHistory;
+package WikipediaRevisionHistory.CLI;
+
+import WikipediaRevisionHistory.model.*;
 
 import java.io.InputStream;
 import java.util.List;

@@ -1,4 +1,7 @@
-package WikipediaRevisionHistory;
+package WikipediaRevisionHistory.CLI;
+
+import WikipediaRevisionHistory.model.Redirect;
+import WikipediaRevisionHistory.model.Revision;
 
 import java.util.List;
 
