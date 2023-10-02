@@ -22,9 +22,9 @@ class WikipediaParserTest {
         }
     }
 
-    String testDataStream = this.getJson("simple-test-data.json");
-    String edgeCaseDataStream = this.getJson("edge-case-test-data.json");
-    String noPageDataStream = this.getJson("no-page.json");
+    private final String testDataStream = this.getJson("simple-test-data.json");
+    private final String edgeCaseDataStream = this.getJson("edge-case-test-data.json");
+    private final String noPageDataStream = this.getJson("no-page.json");
 
     @Test
     public void testInitialParse() {

@@ -4,7 +4,7 @@ import WikipediaRevisionHistory.model.Revision;
 
 import java.util.List;
 
-public class View {
+class View {
     static void requestTitle(){
         System.out.println("enter a Wikipedia title: ");
 
@@ -17,16 +17,14 @@ public class View {
         System.out.println("Redirected to: " + redirectDestination + "." );
     }
     static void showRevision(List<Revision> revisions){
-        revisions.forEach(revision -> {
-            System.out.println(revision.toString());
-        });
+        revisions.forEach(revision -> System.out.println(revision.toString()));
     }
 
-    public static void showNoConnectionWarning() {
+    static void showNoConnectionWarning() {
         System.out.println("Oh god, why’s it so quiet! I crave connection (to the internet).");
     }
 
-    public static void showNoArticleWarning() {
+    static void showNoArticleWarning() {
         System.out.println("That doesn't exists... anywhere on the internet.. dummy");
     }
 }
