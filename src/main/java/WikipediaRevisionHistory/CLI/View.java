@@ -14,8 +14,8 @@ public class View {
         System.out.println("I need an input stupid, provide Wiki article name");
     }
 
-    static void showRedirectMessage(Redirect redirect){
-        System.out.println("Redirected to: " + redirect.to + "." );
+    static void showRedirectMessage(String redirectDestination){
+        System.out.println("Redirected to: " + redirectDestination + "." );
     }
     static void showRevision(List<Revision> revisions){
         revisions.forEach(revision -> {

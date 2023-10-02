@@ -32,16 +32,9 @@ public class WikipediaParser {
         return list;
     }
 
-    // TODO: Change to getLastRedirect
-    public List<Redirect> getRedirects() {
-        List<List<Map<String, String>>> redirectsList = context.read("$..redirects");
-        if (redirectsList.isEmpty()) return null;
-        List<Redirect> list = new ArrayList<>();
-        redirectsList.forEach(redirects ->
-                redirects.forEach(redirect ->
-                        list.add(new Redirect(redirect))
-                )
-        );
-        return list;
+    public String getLastRedirectDestination() {
+        List<String> resultList = context.read("$..redirects[-1:].to");
+        if (resultList == null || resultList.isEmpty()) return null;
+        return resultList.get(0);
     }
 }

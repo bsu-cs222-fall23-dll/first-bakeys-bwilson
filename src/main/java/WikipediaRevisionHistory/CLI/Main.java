@@ -15,9 +15,9 @@ public class Main {
             WikipediaConnector wikiConnector = new WikipediaConnector(title);
             String json = wikiConnector.getData();
             WikipediaParser parser = new WikipediaParser(json);
-            List<Redirect> redirects = parser.getRedirects();
-            if (redirects != null && redirects.size() > 0) {
-                View.showRedirectMessage(redirects.get(redirects.size() - 1));
+            String redirectDestination = parser.getLastRedirectDestination();
+            if (redirectDestination != null) {
+                View.showRedirectMessage(redirectDestination);
             }
             List<Revision> revisions = parser.getRevisions();
             View.showRevision(revisions);
