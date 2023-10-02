@@ -2,7 +2,6 @@ package WikipediaRevisionHistory.CLI;
 
 import WikipediaRevisionHistory.model.*;
 
-import java.io.InputStream;
 import java.util.List;
 import java.net.SocketTimeoutException;
 
@@ -14,8 +13,8 @@ public class Main {
         try {
             String title = controller.getTitle();
             WikipediaConnector wikiConnector = new WikipediaConnector(title);
-            InputStream data = wikiConnector.getData();
-            WikipediaParser parser = new WikipediaParser(data);
+            String json = wikiConnector.getData();
+            WikipediaParser parser = new WikipediaParser(json);
             List<Redirect> redirects = parser.getRedirects();
             if (redirects != null && redirects.size() > 0) {
                 View.showRedirectMessage(redirects.get(redirects.size() - 1));

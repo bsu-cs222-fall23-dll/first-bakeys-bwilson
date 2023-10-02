@@ -3,15 +3,28 @@ package WikipediaRevisionHistory.model;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class WikipediaParserTest {
-    InputStream testDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("simple-test-data.json");
-    InputStream edgeCaseDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("edge-case-test-data.json");
-    InputStream noPageDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("no-page.json");
+
+    private String getJson(String fileName) {
+        try {
+            InputStream dataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName);
+            assert dataStream != null;
+            return new String(dataStream.readAllBytes(), Charset.defaultCharset());
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
+    String testDataStream = this.getJson("simple-test-data.json");
+    String edgeCaseDataStream = this.getJson("edge-case-test-data.json");
+    String noPageDataStream = this.getJson("no-page.json");
 
     @Test
     public void testInitialParse() {
