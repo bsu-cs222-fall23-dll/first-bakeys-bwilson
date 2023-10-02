@@ -1,6 +1,6 @@
 package WikipediaRevisionHistory;
 
-import org.junit.jupiter.api.AfterAll;
+import WikipediaRevisionHistory.model.NoInputException;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;

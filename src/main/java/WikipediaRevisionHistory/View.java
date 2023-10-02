@@ -1,5 +1,8 @@
 package WikipediaRevisionHistory;
 
+import WikipediaRevisionHistory.model.Redirect;
+import WikipediaRevisionHistory.model.Revision;
+
 import java.util.List;
 
 public class View {

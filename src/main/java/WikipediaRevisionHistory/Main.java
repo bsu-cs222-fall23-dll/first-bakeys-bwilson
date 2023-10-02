@@ -1,5 +1,7 @@
 package WikipediaRevisionHistory;
 
+import WikipediaRevisionHistory.model.*;
+
 import java.io.InputStream;
 import java.util.List;
 import java.net.SocketTimeoutException;

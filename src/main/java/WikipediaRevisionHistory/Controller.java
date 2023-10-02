@@ -1,5 +1,7 @@
 package WikipediaRevisionHistory;
 
+import WikipediaRevisionHistory.model.NoInputException;
+
 import java.util.Scanner;
 
 public class Controller {
