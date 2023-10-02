@@ -1,27 +1,46 @@
 {
   "continue": { "rvcontinue": "20230920213403|1176308070", "continue": "||" },
   "query": {
-    "redirects": [{ "from": "UK", "to": "United Kingdom" }],
+    "redirects": [
+      {
+        "from": "Wikipedia:Example of a double redirect",
+        "to": "Wikipedia:Double redirect"
+      },
+      {
+        "from": "Wikipedia:Double redirect",
+        "to": "Wikipedia:Double redirects"
+      }
+    ],
     "pages": {
       "31717": {
         "ns": 0,
         "title": "United Kingdom",
         "revisions": [
           {
-            "user": "Moxy",
-            "timestamp": "2023-09-20T22:22:45Z"
+            "user": "Bkonrad",
+            "timestamp": "2023-09-30T21:33:14Z"
           },
           {
-            "user": "Moxy",
-            "timestamp": "2023-09-20T22:16:30Z"
+            "user": "2607:FB91:120E:D025:B53B:A946:72F2:34DB",
+            "anon": true,
+            "timestamp": "2023-09-30T21:20:26Z"
           },
           {
-            "user": "Moxy",
-            "timestamp": "2023-09-20T22:14:52Z"
+            "user": "DB1729",
+            "timestamp": "2023-09-16T11:46:40Z"
           },
           {
-            "user": "Moxy",
-            "timestamp": "2023-09-20T21:40:00Z"
+            "user": "201.175.241.25",
+            "anon": true,
+            "timestamp": "2023-09-16T11:45:24Z"
+          },
+          {
+            "user": "MaterialWorks",
+            "timestamp": "2023-07-16T21:12:50Z"
+          },
+          {
+            "user": "LizardJr8",
+            "timestamp": "2023-06-18T00:31:54Z"
           }
         ]
       }

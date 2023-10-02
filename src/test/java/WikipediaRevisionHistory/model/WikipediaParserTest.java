@@ -53,19 +53,17 @@ class WikipediaParserTest {
         }
     }
 
-    @Nested class getRedirects {
+    @Nested class getLastRedirectDestination {
         @Test
         public void testNoRedirect() throws NoArticleException {
-            List<Redirect> redirects = new WikipediaParser(testDataStream).getRedirects();
-            assertNull(redirects);
+            String destination = new WikipediaParser(testDataStream).getLastRedirectDestination();
+            assertNull(destination);
         }
 
         @Test
         public void testParsing() throws NoArticleException {
-            List<Redirect> redirects =  new WikipediaParser(edgeCaseDataStream).getRedirects();
-            assertEquals(redirects.size(), 1);
-            assertEquals(redirects.get(0).from, "UK");
-            assertEquals(redirects.get(0).to, "United Kingdom");
+            String destination =  new WikipediaParser(edgeCaseDataStream).getLastRedirectDestination();
+            assertEquals(destination, "Wikipedia:Double redirects");
         }
     }
 
