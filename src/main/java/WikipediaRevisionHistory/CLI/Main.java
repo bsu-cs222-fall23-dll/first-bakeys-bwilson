@@ -1,4 +1,4 @@
-package WikipediaRevisionHistory;
+package WikipediaRevisionHistory.CLI;
 
 import WikipediaRevisionHistory.model.*;
 

@@ -1,4 +1,4 @@
-package WikipediaRevisionHistory;
+package WikipediaRevisionHistory.CLI;
 
 import WikipediaRevisionHistory.model.NoInputException;
 import org.junit.jupiter.api.Test;
