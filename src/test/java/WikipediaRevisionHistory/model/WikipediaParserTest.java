@@ -12,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class WikipediaParserTest {
 
+    private final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
     private String getJson(String fileName) {
-        try {
-            InputStream dataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName);
+        try (InputStream dataStream = classLoader.getResourceAsStream(fileName)) {
             assert dataStream != null;
             return new String(dataStream.readAllBytes(), Charset.defaultCharset());
         } catch (IOException exception) {
