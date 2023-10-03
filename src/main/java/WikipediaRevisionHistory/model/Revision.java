@@ -1,4 +1,4 @@
-package WikipediaRevisionHistory;
+package WikipediaRevisionHistory.model;
 
 import java.util.Map;
 

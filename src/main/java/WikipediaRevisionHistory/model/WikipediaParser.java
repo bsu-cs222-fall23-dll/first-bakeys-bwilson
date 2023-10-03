@@ -1,6 +1,5 @@
-package WikipediaRevisionHistory;
+package WikipediaRevisionHistory.model;
 
-import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 
 import java.io.IOException;

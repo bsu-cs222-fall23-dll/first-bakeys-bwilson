@@ -1,17 +1,17 @@
-package WikipediaRevisionHistory;
+package WikipediaRevisionHistory.GUI;
+
+import WikipediaRevisionHistory.model.*;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.text.TextFlow;
-import javafx.scene.text.Text;
 import javafx.scene.control.TextField;
-
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 import javax.swing.text.html.ListView;
 import java.io.InputStream;
 import java.net.SocketTimeoutException;
 import java.util.List;
-import java.util.Scanner;
 
 public class Controller {
 @FXML
@@ -54,14 +54,4 @@ public class Controller {
 
     }
 }
-
-    public String getTitle () throws NoInputException {
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        if (input.isBlank())
-            throw new NoInputException();
-        scanner.close();
-        return input;
-    }
-
 }
