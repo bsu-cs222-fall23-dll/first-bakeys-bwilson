@@ -3,9 +3,11 @@ package WikipediaRevisionHistory.GUI;
 import WikipediaRevisionHistory.model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+
 import java.util.List;
 
 public class Controller {
@@ -13,11 +15,15 @@ public class Controller {
     private TextField userInput;
 
     @FXML
-    private TextFlow resultTextFlow;
+    private VBox responseBox;
+
+    @FXML
+    private GridPane revisionGrid;
 
     @FXML
     public void search(ActionEvent actionEvent) {
-        resultTextFlow.getChildren().clear();
+        responseBox.getChildren().clear();
+        revisionGrid.getChildren().clear();
         try {
             String title = userInput.getText();
             if (title.isEmpty()) {
@@ -27,21 +33,28 @@ public class Controller {
             String data = wikiConnector.getData();
             WikipediaParser parser = new WikipediaParser(data);
 
-            List<Revision> revisions = parser.getRevisions();
-
-            for (Revision revision : revisions) {
-                Text revisionText = new Text(revision.toString() + "\n");
-                resultTextFlow.getChildren().add(revisionText);
-            }
             String lastRedirectDestination = parser.getLastRedirectDestination();
             if (lastRedirectDestination != null) {
-                Text TextRedirectGUI = new Text("Redirected to: " + lastRedirectDestination);
-                resultTextFlow.getChildren().add(TextRedirectGUI);
+                showMessage("Redirected to: " + lastRedirectDestination);
             }
 
+            List<Revision> revisions = parser.getRevisions();
+            populateRevisionList(revisions);
+
         } catch (NoInputException | NoArticleException | NoConnectionException exception) {
-            Text NoArticleExceptionText = new Text(exception.getMessage());
-            resultTextFlow.getChildren().add(NoArticleExceptionText);
+            showMessage(exception.getMessage());
         }
+    }
+
+    private void populateRevisionList(List<Revision> revisions) {
+        int i = 0;
+        for (Revision revision : revisions) {
+            revisionGrid.addRow(i++, new Label(revision.user), new Label(revision.timestamp));
+        }
+        responseBox.getChildren().add(revisionGrid);
+    }
+
+    private void showMessage(String message) {
+        responseBox.getChildren().add(new Label(message));
     }
 }
