@@ -9,7 +9,8 @@ public class Main {
 
     public static void main(String[] args) {
         Controller controller = new Controller();
-        View.requestTitle();
+        View view = new View();
+        view.requestTitle();
         try {
             String title = controller.getTitle();
             WikipediaConnector wikiConnector = new WikipediaConnector(title);
@@ -17,16 +18,16 @@ public class Main {
             WikipediaParser parser = new WikipediaParser(json);
             String redirectDestination = parser.getLastRedirectDestination();
             if (redirectDestination != null) {
-                View.showRedirectMessage(redirectDestination);
+                view.showRedirectMessage(redirectDestination);
             }
             List<Revision> revisions = parser.getRevisions();
-            View.showRevision(revisions);
+            view.showRevision(revisions);
         } catch (NoInputException exception) {
-            View.showNoInputWarning();
+            view.showNoInputWarning();
         } catch (SocketTimeoutException exception) {
-            View.showNoConnectionWarning();
+            view.showNoConnectionWarning();
         } catch (NoArticleException exception) {
-            View.showNoArticleWarning();
+            view.showNoArticleWarning();
         }
     }
 

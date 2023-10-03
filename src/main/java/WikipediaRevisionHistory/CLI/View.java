@@ -5,26 +5,26 @@ import WikipediaRevisionHistory.model.Revision;
 import java.util.List;
 
 class View {
-    static void requestTitle(){
+    void requestTitle(){
         System.out.println("enter a Wikipedia title: ");
 
     }
-    static void showNoInputWarning(){
+    void showNoInputWarning(){
         System.out.println("I need an input stupid, provide Wiki article name");
     }
 
-    static void showRedirectMessage(String redirectDestination){
+    void showRedirectMessage(String redirectDestination){
         System.out.println("Redirected to: " + redirectDestination + "." );
     }
-    static void showRevision(List<Revision> revisions){
+    void showRevision(List<Revision> revisions){
         revisions.forEach(revision -> System.out.println(revision.toString()));
     }
 
-    static void showNoConnectionWarning() {
+    void showNoConnectionWarning() {
         System.out.println("Oh god, why’s it so quiet! I crave connection (to the internet).");
     }
 
-    static void showNoArticleWarning() {
+    void showNoArticleWarning() {
         System.out.println("That doesn't exists... anywhere on the internet.. dummy");
     }
 }
