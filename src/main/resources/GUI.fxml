@@ -19,6 +19,6 @@
          </children>
       </HBox>
       <Button mnemonicParsing="false" onAction="#search" text="Search" />
-      <TextFlow fx:id="resultTextFlow" />
+      <TextFlow fx:id="resultTextFlow" textAlignment="CENTER" />
    </children>
 </VBox>

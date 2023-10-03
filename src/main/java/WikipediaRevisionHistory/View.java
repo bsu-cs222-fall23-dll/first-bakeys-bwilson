@@ -35,4 +35,7 @@ public class View {
     public static void showNoArticleWarning() {
         System.out.println("That doesn't exists... anywhere on the internet.. dummy");
     }
+    static String showNoArticleWarningGUI(){
+        return("That doesn't exists... anywhere on the internet.. dummy");
+    }
 }

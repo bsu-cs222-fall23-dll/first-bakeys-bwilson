@@ -21,27 +21,38 @@ public class Controller {
 @FXML
     private TextFlow resultTextFlow;
 @FXML
-    public void search(ActionEvent actionEvent) throws SocketTimeoutException, NoArticleException {
+    public void search(ActionEvent actionEvent) throws SocketTimeoutException {
     resultTextFlow.getChildren().clear();
-    String title = userInput.getText();
-    WikipediaConnector wikiConnector = new WikipediaConnector(title);
-    InputStream data = wikiConnector.getData();
-    WikipediaParser parser = new WikipediaParser(data);
+    try {
+        String title = userInput.getText();
+        if (title.isEmpty()) {
 
-    List<Revision> revisions = parser.getRevisions();
+        }
+        WikipediaConnector wikiConnector = new WikipediaConnector(title);
+        InputStream data = wikiConnector.getData();
+        WikipediaParser parser = new WikipediaParser(data);
 
-    for (Revision revision : revisions) {
-        Text revisionText = new Text(revision.toString() + "\n");
-        resultTextFlow.getChildren().add(revisionText);
+        List<Revision> revisions = parser.getRevisions();
+
+        for (Revision revision : revisions) {
+            Text revisionText = new Text(revision.toString() + "\n");
+            resultTextFlow.getChildren().add(revisionText);
+        }
+        List<Redirect> redirects = parser.getRedirects();
+        if (redirects != null && !redirects.isEmpty()) {
+            String RedirectGUI = View.showRedirectGUI(redirects.get(redirects.size() - 1));
+            Text TextRedirectGUI = new Text(RedirectGUI);
+
+            resultTextFlow.getChildren().add(TextRedirectGUI);
+        }
+
+
+    } catch (NoArticleException exception){
+        Text NoArticleExceptionText = new Text(View.showNoArticleWarningGUI());
+
+        resultTextFlow.getChildren().add(NoArticleExceptionText);
+
     }
-    List<Redirect> redirects = parser.getRedirects();
-    if (redirects != null && !redirects.isEmpty()) {
-         String RedirectGUI = View.showRedirectGUI(redirects.get(redirects.size() - 1));
-         Text TextRedirectGUI = new Text(RedirectGUI);
-
-        resultTextFlow.getChildren().add(TextRedirectGUI);
-    }
-
 }
 
     public String getTitle () throws NoInputException {
