@@ -3,15 +3,28 @@ package WikipediaRevisionHistory.model;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class WikipediaParserTest {
-    InputStream testDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("simple-test-data.json");
-    InputStream edgeCaseDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("edge-case-test-data.json");
-    InputStream noPageDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("no-page.json");
+
+    private final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+    private String getJson(String fileName) {
+        try (InputStream dataStream = classLoader.getResourceAsStream(fileName)) {
+            assert dataStream != null;
+            return new String(dataStream.readAllBytes(), Charset.defaultCharset());
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
+    private final String testDataStream = this.getJson("simple-test-data.json");
+    private final String edgeCaseDataStream = this.getJson("edge-case-test-data.json");
+    private final String noPageDataStream = this.getJson("no-page.json");
 
     @Test
     public void testInitialParse() {
@@ -40,19 +53,17 @@ class WikipediaParserTest {
         }
     }
 
-    @Nested class getRedirects {
+    @Nested class getLastRedirectDestination {
         @Test
         public void testNoRedirect() throws NoArticleException {
-            List<Redirect> redirects = new WikipediaParser(testDataStream).getRedirects();
-            assertNull(redirects);
+            String destination = new WikipediaParser(testDataStream).getLastRedirectDestination();
+            assertNull(destination);
         }
 
         @Test
         public void testParsing() throws NoArticleException {
-            List<Redirect> redirects =  new WikipediaParser(edgeCaseDataStream).getRedirects();
-            assertEquals(redirects.size(), 1);
-            assertEquals(redirects.get(0).from, "UK");
-            assertEquals(redirects.get(0).to, "United Kingdom");
+            String destination =  new WikipediaParser(edgeCaseDataStream).getLastRedirectDestination();
+            assertEquals(destination, "Wikipedia:Double redirects");
         }
     }
 

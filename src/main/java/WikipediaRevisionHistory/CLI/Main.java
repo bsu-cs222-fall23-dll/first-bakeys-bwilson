@@ -2,7 +2,6 @@ package WikipediaRevisionHistory.CLI;
 
 import WikipediaRevisionHistory.model.*;
 
-import java.io.InputStream;
 import java.util.List;
 import java.net.SocketTimeoutException;
 
@@ -10,24 +9,25 @@ public class Main {
 
     public static void main(String[] args) {
         Controller controller = new Controller();
-        View.requestTitle();
+        View view = new View();
+        view.requestTitle();
         try {
             String title = controller.getTitle();
             WikipediaConnector wikiConnector = new WikipediaConnector(title);
-            InputStream data = wikiConnector.getData();
-            WikipediaParser parser = new WikipediaParser(data);
-            List<Redirect> redirects = parser.getRedirects();
-            if (redirects != null && redirects.size() > 0) {
-                View.showRedirectMessage(redirects.get(redirects.size() - 1));
+            String json = wikiConnector.getData();
+            WikipediaParser parser = new WikipediaParser(json);
+            String redirectDestination = parser.getLastRedirectDestination();
+            if (redirectDestination != null) {
+                view.showRedirectMessage(redirectDestination);
             }
             List<Revision> revisions = parser.getRevisions();
-            View.showRevision(revisions);
+            view.showRevision(revisions);
         } catch (NoInputException exception) {
-            View.showNoInputWarning();
+            view.showNoInputWarning();
         } catch (SocketTimeoutException exception) {
-            View.showNoConnectionWarning();
+            view.showNoConnectionWarning();
         } catch (NoArticleException exception) {
-            View.showNoArticleWarning();
+            view.showNoArticleWarning();
         }
     }
 
