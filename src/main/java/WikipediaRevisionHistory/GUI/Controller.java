@@ -9,16 +9,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-
-import javax.swing.text.html.ListView;
 import java.net.SocketTimeoutException;
 import java.util.List;
 
 public class Controller {
     @FXML
     private TextField userInput;
-    @FXML
-    private ListView revisionList;
+
     @FXML
     private TextFlow resultTextFlow;
 

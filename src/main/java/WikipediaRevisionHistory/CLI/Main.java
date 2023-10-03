@@ -5,7 +5,7 @@ import WikipediaRevisionHistory.model.*;
 import java.net.SocketTimeoutException;
 import java.util.List;
 
-public class Main {
+class Main {
 
     public static void main(String[] args) {
         Controller controller = new Controller();
