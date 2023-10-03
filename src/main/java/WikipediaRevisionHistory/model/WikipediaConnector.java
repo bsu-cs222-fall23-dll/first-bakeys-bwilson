@@ -15,7 +15,7 @@ public class WikipediaConnector {
         this.title = title;
     }
 
-    public String getData() throws SocketTimeoutException {
+    public String getData() throws NoConnectionException {
         String urlString = "https://en.wikipedia.org/w/api.php?"
                 + "action=query"
                 + "&format=json"
@@ -33,7 +33,7 @@ public class WikipediaConnector {
             InputStream dataStream = connection.getInputStream();
             return new String(dataStream.readAllBytes(), Charset.defaultCharset());
         } catch (SocketTimeoutException noConnectionException) {
-            throw noConnectionException;
+            throw new NoConnectionException();
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
