@@ -1,11 +1,11 @@
 package WikipediaRevisionHistory.model;
 
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.net.SocketTimeoutException;
 import java.nio.charset.Charset;
 
 public class WikipediaConnector {

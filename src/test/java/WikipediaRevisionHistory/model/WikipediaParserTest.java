@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class WikipediaParserTest {
 
     private final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+
     private String getJson(String fileName) {
         try (InputStream dataStream = classLoader.getResourceAsStream(fileName)) {
             assert dataStream != null;
@@ -31,10 +32,11 @@ class WikipediaParserTest {
         assertDoesNotThrow(() -> new WikipediaParser(testDataStream));
     }
 
-    @Nested class getRevisions {
+    @Nested
+    class getRevisions {
         @Test
         public void testParsing() throws NoArticleException {
-            List<Revision> revisions =  new WikipediaParser(testDataStream).getRevisions();
+            List<Revision> revisions = new WikipediaParser(testDataStream).getRevisions();
             assertEquals(revisions.size(), 13);
             assertEquals(revisions.get(0).user, "Ken Gallager");
             assertEquals(revisions.get(0).timestamp, "2022-05-25T17:55:11Z");
@@ -42,7 +44,7 @@ class WikipediaParserTest {
 
         @Test
         public void testSorting() throws NoArticleException {
-            List<Revision> revisions =  new WikipediaParser(testDataStream).getRevisions();
+            List<Revision> revisions = new WikipediaParser(testDataStream).getRevisions();
             String lastTimestamp = revisions.get(0).timestamp;
             for (int i = 1; i < revisions.size(); i++) {
                 String timestamp = revisions.get(i).timestamp;
@@ -53,7 +55,8 @@ class WikipediaParserTest {
         }
     }
 
-    @Nested class getLastRedirectDestination {
+    @Nested
+    class getLastRedirectDestination {
         @Test
         public void testNoRedirect() throws NoArticleException {
             String destination = new WikipediaParser(testDataStream).getLastRedirectDestination();
@@ -62,7 +65,7 @@ class WikipediaParserTest {
 
         @Test
         public void testParsing() throws NoArticleException {
-            String destination =  new WikipediaParser(edgeCaseDataStream).getLastRedirectDestination();
+            String destination = new WikipediaParser(edgeCaseDataStream).getLastRedirectDestination();
             assertEquals(destination, "Wikipedia:Double redirects");
         }
     }

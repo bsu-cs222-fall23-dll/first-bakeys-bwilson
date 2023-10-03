@@ -2,8 +2,8 @@ package WikipediaRevisionHistory.CLI;
 
 import WikipediaRevisionHistory.model.*;
 
-import java.util.List;
 import java.net.SocketTimeoutException;
+import java.util.List;
 
 public class Main {
 

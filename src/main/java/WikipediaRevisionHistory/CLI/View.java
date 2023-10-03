@@ -5,18 +5,20 @@ import WikipediaRevisionHistory.model.Revision;
 import java.util.List;
 
 class View {
-    void requestTitle(){
+    void requestTitle() {
         System.out.println("enter a Wikipedia title: ");
 
     }
-    void showNoInputWarning(){
+
+    void showNoInputWarning() {
         System.out.println("I need an input stupid, provide Wiki article name");
     }
 
-    void showRedirectMessage(String redirectDestination){
-        System.out.println("Redirected to: " + redirectDestination + "." );
+    void showRedirectMessage(String redirectDestination) {
+        System.out.println("Redirected to: " + redirectDestination + ".");
     }
-    void showRevision(List<Revision> revisions){
+
+    void showRevision(List<Revision> revisions) {
         revisions.forEach(revision -> System.out.println(revision.toString()));
     }
 

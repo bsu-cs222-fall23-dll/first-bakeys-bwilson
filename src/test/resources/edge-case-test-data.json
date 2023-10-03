@@ -1,5 +1,8 @@
 {
-  "continue": { "rvcontinue": "20230920213403|1176308070", "continue": "||" },
+  "continue": {
+    "rvcontinue": "20230920213403|1176308070",
+    "continue": "||"
+  },
   "query": {
     "redirects": [
       {

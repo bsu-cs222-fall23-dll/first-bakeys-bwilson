@@ -1,3 +1,4 @@
 package WikipediaRevisionHistory.model;
 
-public class NoArticleException extends Exception {}
+public class NoArticleException extends Exception {
+}
