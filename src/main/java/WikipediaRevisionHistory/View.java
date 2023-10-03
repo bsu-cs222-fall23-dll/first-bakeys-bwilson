@@ -1,5 +1,7 @@
 package WikipediaRevisionHistory;
 
+import javafx.scene.text.Text;
+
 import java.util.List;
 
 public class View {
@@ -11,12 +13,18 @@ public class View {
         System.out.println("I need an input stupid, provide Wiki article name");
     }
 
-    static void showRedirectMessage(Redirect redirect){
+    static Text showRedirectMessage(Redirect redirect){
         System.out.println("Redirected to: " + redirect.to + "." );
+        return null;
+    }
+    static String showRedirectGUI(Redirect redirect){
+        return "Redirected to: " + redirect.to + ".";
+
     }
     static void showRevision(List<Revision> revisions){
         revisions.forEach(revision -> {
             System.out.println(revision.toString());
+
         });
     }
 
