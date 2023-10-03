@@ -10,10 +10,6 @@ class View {
 
     }
 
-    void showNoInputWarning() {
-        System.out.println("I need an input stupid, provide Wiki article name");
-    }
-
     void showRedirectMessage(String redirectDestination) {
         System.out.println("Redirected to: " + redirectDestination + ".");
     }
@@ -22,11 +18,7 @@ class View {
         revisions.forEach(revision -> System.out.println(revision.toString()));
     }
 
-    void showNoConnectionWarning() {
-        System.out.println("Oh god, why’s it so quiet! I crave connection (to the internet).");
-    }
-
-    void showNoArticleWarning() {
-        System.out.println("That doesn't exists... anywhere on the internet.. dummy");
+    void showException(Exception exception) {
+        System.out.println(exception.getMessage());
     }
 }

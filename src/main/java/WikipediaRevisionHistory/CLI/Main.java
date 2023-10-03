@@ -2,7 +2,6 @@ package WikipediaRevisionHistory.CLI;
 
 import WikipediaRevisionHistory.model.*;
 
-import java.net.SocketTimeoutException;
 import java.util.List;
 
 class Main {
@@ -22,12 +21,8 @@ class Main {
             }
             List<Revision> revisions = parser.getRevisions();
             view.showRevision(revisions);
-        } catch (NoInputException exception) {
-            view.showNoInputWarning();
-        } catch (SocketTimeoutException exception) {
-            view.showNoConnectionWarning();
-        } catch (NoArticleException exception) {
-            view.showNoArticleWarning();
+        } catch (NoInputException | NoArticleException | NoConnectionException exception) {
+            view.showException(exception);
         }
     }
 
