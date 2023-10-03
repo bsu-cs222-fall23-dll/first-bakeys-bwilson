@@ -1,7 +1,6 @@
 package WikipediaRevisionHistory.GUI;
 
 import WikipediaRevisionHistory.model.*;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -21,7 +20,7 @@ public class Controller {
     private GridPane revisionGrid;
 
     @FXML
-    public void search(ActionEvent actionEvent) {
+    public void search() {
         responseBox.getChildren().clear();
         revisionGrid.getChildren().clear();
         try {
