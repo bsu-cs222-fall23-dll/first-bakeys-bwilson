@@ -44,6 +44,7 @@ public class Controller {
         } catch (NoInputException | NoArticleException | NoConnectionException exception) {
             showMessage(exception.getMessage());
         }
+        responseBox.getScene().getWindow().sizeToScene();
     }
 
     private void populateRevisionList(List<Revision> revisions) {
