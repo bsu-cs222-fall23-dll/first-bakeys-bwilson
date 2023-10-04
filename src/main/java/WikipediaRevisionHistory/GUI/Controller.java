@@ -9,14 +9,6 @@ import javafx.scene.layout.VBox;
 
 import java.util.List;
 
-import WikipediaRevisionHistory.model.NoInputException;
-import WikipediaRevisionHistory.model.NoArticleException;
-import WikipediaRevisionHistory.model.NoConnectionException;
-import WikipediaRevisionHistory.model.WikipediaConnector;
-import WikipediaRevisionHistory.model.WikipediaParser;
-import WikipediaRevisionHistory.model.Revision;
-
-
 public class Controller {
     @FXML
     private TextField userInput;
