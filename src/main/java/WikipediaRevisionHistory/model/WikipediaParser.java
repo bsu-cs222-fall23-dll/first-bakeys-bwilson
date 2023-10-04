@@ -18,6 +18,7 @@ public class WikipediaParser {
         this.context = JsonPath.using(config).parse(jsonString);
 
         List<Boolean> isPageMissingList = context.read("$..pages[*].missing");
+
         if (!isPageMissingList.isEmpty() && isPageMissingList.get(0)) throw new NoArticleException();
     }
 
