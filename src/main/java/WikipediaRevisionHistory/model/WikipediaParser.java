@@ -17,8 +17,14 @@ public class WikipediaParser {
         config.addOptions(Option.DEFAULT_PATH_LEAF_TO_NULL);
         this.context = JsonPath.using(config).parse(jsonString);
 
-        List<Boolean> isPageMissingList = context.read("$..pages[*].missing");
-        if (!isPageMissingList.isEmpty() && isPageMissingList.get(0)) throw new NoArticleException();
+        if (isPageMissing()) throw new NoArticleException();
+    }
+
+    private boolean isPageMissing() {
+        List<Object> isPageMissingList = context.read("$..pages[*].missing");
+        if (isPageMissingList.isEmpty()) return false;
+        Object isPageMissing = isPageMissingList.get(0);
+        return isPageMissing instanceof String || (boolean) isPageMissing;
     }
 
     public List<Revision> getRevisions() {

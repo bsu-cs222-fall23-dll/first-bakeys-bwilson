@@ -2,10 +2,7 @@ package WikipediaRevisionHistory.model;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.SocketTimeoutException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
+import java.net.*;
 import java.nio.charset.Charset;
 
 public class WikipediaConnector {
@@ -32,7 +29,7 @@ public class WikipediaConnector {
             connection.connect();
             InputStream dataStream = connection.getInputStream();
             return new String(dataStream.readAllBytes(), Charset.defaultCharset());
-        } catch (SocketTimeoutException noConnectionException) {
+        } catch (SocketTimeoutException | UnknownHostException noConnectionException) {
             throw new NoConnectionException();
         } catch (IOException exception) {
             throw new RuntimeException(exception);

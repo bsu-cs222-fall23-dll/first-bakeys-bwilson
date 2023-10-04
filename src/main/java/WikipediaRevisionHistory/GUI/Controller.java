@@ -9,6 +9,14 @@ import javafx.scene.layout.VBox;
 
 import java.util.List;
 
+import WikipediaRevisionHistory.model.NoInputException;
+import WikipediaRevisionHistory.model.NoArticleException;
+import WikipediaRevisionHistory.model.NoConnectionException;
+import WikipediaRevisionHistory.model.WikipediaConnector;
+import WikipediaRevisionHistory.model.WikipediaParser;
+import WikipediaRevisionHistory.model.Revision;
+
+
 public class Controller {
     @FXML
     private TextField userInput;
@@ -41,7 +49,8 @@ public class Controller {
             populateRevisionList(revisions);
 
         } catch (NoInputException | NoArticleException | NoConnectionException exception) {
-            showMessage(exception.getMessage());
+            ModalController modalController = new ModalController();
+            modalController.showErrorModal(exception.getMessage());
         }
         responseBox.getScene().getWindow().sizeToScene();
     }
@@ -57,4 +66,5 @@ public class Controller {
     private void showMessage(String message) {
         responseBox.getChildren().add(new Label(message));
     }
+
 }
